@@ -1,0 +1,37 @@
+﻿@model IEnumerable<FinalExamLast.Models.JobListing>
+
+@{
+    ViewData["Title"] = "Job List";
+}
+
+<h2>@ViewData["Title"]</h2>
+<form asp-action="CandidateFullJobs" method="get">
+    <div class="form-group">
+        <input type="text" class="form-control" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Search...">
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Search" class="btn btn-default" />
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>          
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var JobListing in Model)
+        {
+            <tr>
+                <td>@JobListing.Name</td>
+                <td>@JobListing.Description</td>
+               
+                <td>
+                    @* <a href="@Url.Action("RegisterForJob", "Applications", new { jobListId = JobList.Id })" class="btn btn-primary">Đăng Ký</a> *@
+                    <a asp-controller="JobApplications" asp-action="Create" asp-route-id="@JobListing.Id" class="btn btn-primary">Apply</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

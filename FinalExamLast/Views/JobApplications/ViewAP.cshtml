@@ -1,0 +1,21 @@
+﻿@model IEnumerable<FinalExamLast.Models.JobApplication>
+
+<h2>Application of JobListing</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Candidate Name</th>
+            <th>CV of Candidate</th>
+            <!-- các cột thông tin khác -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var app in Model)
+        {
+            <tr>
+                <td>@app.Candidate.Name</td>
+                <td>@app.RequiredQualifications</td>
+            </tr>
+        }
+    </tbody>
+</table>
